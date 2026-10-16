@@ -1,78 +1,145 @@
 
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Surprise for You ❤️</title>
+<title>A Little Surprise 💌</title>
 <style>
-body {
-  margin: 0;
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(145deg,#6b001e,#ed7897);
-  font-family: Arial,sans-serif;
-  color: #fff;
-  text-align: center;
+*{box-sizing:border-box}
+body{
+ margin:0;min-height:100vh;
+ background:radial-gradient(circle at top,#a63c60,#390817 75%);
+ color:#fff2f5;font-family:Georgia,Arial,sans-serif;
+ display:flex;justify-content:center;align-items:center;
+ padding:20px;overflow-x:hidden
 }
-.card {
-  width: 82%;
-  max-width: 380px;
-  padding: 25px;
-  border-radius: 25px;
-  background: #ffffff20;
-  border: 1px solid #ffffff55;
-  box-shadow: 0 10px 35px #40001555;
+.card{
+ width:100%;max-width:390px;text-align:center;
+ padding:28px 22px;border:1px solid #ffc3d655;
+ border-radius:28px;
+ background:linear-gradient(155deg,#ffffff16,#ffffff05);
+ box-shadow:0 15px 50px #17000966;
 }
-h1 { color: #ffe1e9; }
-input,button {
-  padding: 12px;
-  margin: 6px;
-  border: 0;
-  border-radius: 12px;
-  font-size: 16px;
+.butterfly{font-size:38px;animation:float 3s ease-in-out infinite}
+h1{color:#ffd5e2;font-size:29px}
+p{line-height:2}
+.small{font-size:14px;color:#ffc3d6}
+input{
+ width:100%;padding:13px;border-radius:14px;
+ border:1px solid #ffc4d8;background:#fff0f5;
+ color:#710d32;font-size:23px;text-align:center;
+ letter-spacing:8px;margin:10px 0
 }
-button {
-  background: #ffe1e9;
-  color: #760025;
-  cursor: pointer;
+button{
+ cursor:pointer;border:0;border-radius:20px;
+ padding:12px 20px;margin:5px;
+ background:#ffe1eb;color:#771333;
+ font-size:16px;font-weight:bold
 }
-#message { line-height: 1.9; }
+button:active{transform:scale(.97)}
+.keypad{
+ display:grid;grid-template-columns:repeat(3,1fr);
+ gap:8px;margin:12px 0
+}
+.keypad button{font-size:21px;padding:13px}
+.hidden{display:none}
+.heart{font-size:35px;animation:pulse 1.3s infinite}
+.photo{
+ border:1px dashed #ffd2e0;border-radius:18px;
+ padding:22px 10px;margin:15px 0;background:#ffffff0c
+}
+#feedback{min-height:25px;color:#ffd3df}
+@keyframes float{50%{transform:translateY(-8px)}}
+@keyframes pulse{50%{transform:scale(1.12)}}
 </style>
 </head>
 <body>
-<div class="card">
-  <div style="font-size:40px">🦋 💗 🦋</div>
-  <h1>Hey, You! ❤️</h1>
-  <p>عندك مفاجأة صغيرة مستنياك</p>
-  <p>اكتب الباسورد عشان تفتحها 🎁</p>
-  <input id="pass" type="password" inputmode="numeric" placeholder="Password">
-  <br>
-  <button onclick="check()">Unlock 💌</button>
-  <div id="message"></div>
-</div>
+<main class="card">
+ <div class="butterfly">🦋 💗 🦋</div>
+
+ <section id="lock">
+  <h1>A Little Surprise</h1>
+  <p>في مفاجأة صغيرة معمولة مخصوص ليك 🎁</p>
+  <p class="small">تفتكر الباسورد؟ 😉</p>
+  <input id="pass" readonly placeholder="••••" aria-label="الباسورد">
+  <div class="keypad">
+   <button onclick="add('1')">1</button>
+   <button onclick="add('2')">2</button>
+   <button onclick="add('3')">3</button>
+   <button onclick="add('4')">4</button>
+   <button onclick="add('5')">5</button>
+   <button onclick="add('6')">6</button>
+   <button onclick="add('7')">7</button>
+   <button onclick="add('8')">8</button>
+   <button onclick="add('9')">9</button>
+   <button onclick="erase()">⌫</button>
+   <button onclick="add('0')">0</button>
+   <button onclick="check()">♡</button>
+  </div>
+  <button onclick="check()">افتح المفاجأة 💌</button>
+  <p id="feedback"></p>
+ </section>
+
+ <section id="page1" class="hidden">
+  <div class="heart">❤️</div>
+  <h1>Happy Birthday!</h1>
+  <p>كل سنة وإنت طيب، ويا رب سنتك الجديدة تكون مليانة فرحة ونجاح وراحة بال.</p>
+  <p>النهارده يوم مميز، عشان هو يوم ميلاد شخص غالي ومميز جدًا. 💗</p>
+  <button onclick="showPage(2)">لسه في مفاجآت 🦋</button>
+ </section>
+
+ <section id="page2" class="hidden">
+  <div class="heart">💌</div>
+  <h1>رسالة ليك</h1>
+  <p>في كلام كتير نفسي أقولهولك، بس أهم حاجة إني أتمنالك كل الحاجات الحلوة اللي تستحقها، وإن أيامك الجاية تكون أحلى من اللي فاتت.</p>
+  <p>خلي الابتسامة دي دايمًا موجودة، ومتنساش إن النهارده يومك إنت. ❤️</p>
+  <button onclick="showPage(3)">افتح آخر مفاجأة 🎁</button>
+ </section>
+
+ <section id="page3" class="hidden">
+  <div class="heart">🎂💗🎁</div>
+  <h1>To Someone Special</h1>
+  <p>أتمنى الأمنية اللي في قلبك تتحقق، وتفضل دايمًا محاط بالحب والفرحة.</p>
+  <div class="photo">
+   📸 🦋 📸
+   <p>هنا هنحط صور ذكرياتنا سوا</p>
+   <p class="small">مكان الصور الخاصة بينا 💗</p>
+  </div>
+  <p>Made with love, just for you ❤️</p>
+  <button onclick="showPage(1)">نرجع من الأول ↺</button>
+ </section>
+</main>
+
 <script>
-function check() {
-  const password = document.getElementById("pass").value;
-  const box = document.getElementById("message");
-  if (password === "1234") {
-    box.innerHTML = `
-      <h2>Happy Birthday! 🎂</h2>
-      <p>كل سنة وأنت شخص مميز جدًا ❤️</p>
-      <p>أتمنى أيامك الجاية تكون مليانة فرحة ونجاح.</p>
-      <p>وجودك في حياتي بيضيف لها حاجات حلوة كتير 💗</p>
-      <button onclick="more()">افتح المفاجأة 🎁</button>
-      <div id="extra"></div>`;
-  } else {
-    box.innerHTML = "<p>الباسورد غلط! جرب تاني 💕</p>";
-  }
+let entered = "";
+const correctPassword = "1234";
+
+function add(n){
+ if(entered.length < 8) entered += n;
+ document.getElementById("pass").value = entered;
+ document.getElementById("feedback").textContent = "";
 }
-function more() {
-  document.getElementById("extra").innerHTML =
-    "<h2>رسالة ليك 💌</h2>" +
-    "<p>هنا هنكتب رسالتك الخاصة ونضيف صوركم سوا 🦋</p>" +
-    "<p>With love, always ❤️</p>";
+function erase(){
+ entered = entered.slice(0,-1);
+ document.getElementById("pass").value = entered;
+}
+function check(){
+ if(entered === correctPassword){
+  document.getElementById("lock").classList.add("hidden");
+  showPage(1);
+ }else{
+  document.getElementById("feedback").textContent =
+   "مش هو ده الباسورد 🙈 جرّب تاني يا جميل";
+  entered = "";
+  document.getElementById("pass").value = "";
+ }
+}
+function showPage(n){
+ ["page1","page2","page3"].forEach(id =>
+  document.getElementById(id).classList.add("hidden"));
+ document.getElementById("page"+n).classList.remove("hidden");
 }
 </script>
 </body>
