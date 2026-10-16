@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Surprise for You ❤️</title>
+<style>
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(145deg,#6b001e,#ed7897);
+  font-family: Arial,sans-serif;
+  color: #fff;
+  text-align: center;
+}
+.card {
+  width: 82%;
+  max-width: 380px;
+  padding: 25px;
+  border-radius: 25px;
+  background: #ffffff20;
+  border: 1px solid #ffffff55;
+  box-shadow: 0 10px 35px #40001555;
+}
+h1 { color: #ffe1e9; }
+input,button {
+  padding: 12px;
+  margin: 6px;
+  border: 0;
+  border-radius: 12px;
+  font-size: 16px;
+}
+button {
+  background: #ffe1e9;
+  color: #760025;
+  cursor: pointer;
+}
+#message { line-height: 1.9; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div style="font-size:40px">🦋 💗 🦋</div>
+  <h1>Hey, You! ❤️</h1>
+  <p>عندك مفاجأة صغيرة مستنياك</p>
+  <p>اكتب الباسورد عشان تفتحها 🎁</p>
+  <input id="pass" type="password" inputmode="numeric" placeholder="Password">
+  <br>
+  <button onclick="check()">Unlock 💌</button>
+  <div id="message"></div>
+</div>
+<script>
+function check() {
+  const password = document.getElementById("pass").value;
+  const box = document.getElementById("message");
+  if (password === "1234") {
+    box.innerHTML = `
+      <h2>Happy Birthday! 🎂</h2>
+      <p>كل سنة وأنت شخص مميز جدًا ❤️</p>
+      <p>أتمنى أيامك الجاية تكون مليانة فرحة ونجاح.</p>
+      <p>وجودك في حياتي بيضيف لها حاجات حلوة كتير 💗</p>
+      <button onclick="more()">افتح المفاجأة 🎁</button>
+      <div id="extra"></div>`;
+  } else {
+    box.innerHTML = "<p>الباسورد غلط! جرب تاني 💕</p>";
+  }
+}
+function more() {
+  document.getElementById("extra").innerHTML =
+    "<h2>رسالة ليك 💌</h2>" +
+    "<p>هنا هنكتب رسالتك الخاصة ونضيف صوركم سوا 🦋</p>" +
+    "<p>With love, always ❤️</p>";
+}
+</script>
+</body>
+</html>
